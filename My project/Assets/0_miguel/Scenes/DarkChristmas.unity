@@ -2029,6 +2029,20 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.00064477324
       objectReference: {fileID: 0}
+    - target: {fileID: 8379910085266795597, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
+    - target: {fileID: 8379910085266795597, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandIndex1'\n\tTransform 'mixamorig:LeftHandPinky2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+        'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftHandMiddle3'\n\tTransform
+        'mixamorig:LeftShoulder'\n\tand more ...\n\tFrom animation clip 'mixamo.com'"
+      objectReference: {fileID: 0}
     - target: {fileID: 8469051729287566799, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.75630057
@@ -4075,6 +4089,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4948880241294746, guid: 2429ba3ee4494ad4d92f7acf477c2e77, type: 3}
   m_PrefabInstance: {fileID: 997510238}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &997519335 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7828389085886146787, guid: b0110672123afc94a86ccbf42b294e19, type: 3}
+  m_PrefabInstance: {fileID: 629673240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1009459401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5522,8 +5541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cea08750a2ac6b48a921d89ae5e4297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerChest
-  chestAnimator: {fileID: 0}
-  JackAnimator: {fileID: 0}
+  chestAnimator: {fileID: 997519335}
+  JackAnimator: {fileID: 300999176}
 --- !u!1001 &1593924498
 PrefabInstance:
   m_ObjectHideFlags: 0
