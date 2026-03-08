@@ -1,25 +1,28 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Animations;
+using UnityEngine.InputSystem; // No olvides esta línea para el PlayerInput
 
 public class JackTimelineController : MonoBehaviour
 {
-	private Animator _animator;
-	private PlayerInput _playerInput;
-	private CharacterController _characterController;
+	[Header("Animators")]
+	public Animator timelineAnimator; // El de JackSkellingtonMove Variant
+	public Animator gameplayAnimator; // El de Robot
 
-	void Awake()
+	[Header("Controles")]
+	public PlayerInput playerInput; // Arrástralo desde el inspector
+	public CharacterController characterController; // Arrástralo desde el inspector
+
+	public void FinalizarCinematica()
 	{
-		_animator = GetComponent<Animator>();
-		_playerInput = GetComponent<PlayerInput>();
-	}
+		// 1. Apagamos el Animator que usó el Timeline para que no bloquee al personaje
+		if (timelineAnimator != null) timelineAnimator.enabled = false;
 
-	// Esta función la puedes llamar desde el Timeline usando un Signal Emitter
-	public void SetCinematicMode(bool isCinematic)
-	{
-		if (_playerInput != null) _playerInput.enabled = !isCinematic;
-		if (_animator != null) _animator.enabled = !isCinematic;
-		if (_characterController != null) _characterController.enabled = !isCinematic;
+		// 2. Encendemos el Animator del Robot (el que tiene el StarterAssets Controller)
+		if (gameplayAnimator != null) gameplayAnimator.enabled = true;
 
+		// 3. Activamos la física y el control del jugador
+		if (characterController != null) characterController.enabled = true;
+		if (playerInput != null) playerInput.enabled = true;
+
+		Debug.Log("Cinemática finalizada: Control transferido al Robot.");
 	}
 }
