@@ -12,6 +12,10 @@ public class JackTimelineController : MonoBehaviour
 
 	public CharacterController characterController; // Arrástralo desde el inspector
 
+	[Header("Camaras")]
+	public GameObject robotCamera; 
+	public GameObject playerFollowCamera; 
+
 	public void IniciarCinematica()
 	{
 
@@ -21,7 +25,8 @@ public class JackTimelineController : MonoBehaviour
 
 		if (characterController != null) characterController.enabled = false;
 
-
+		if (robotCamera != null) robotCamera.SetActive(false);
+		if (playerFollowCamera != null) playerFollowCamera.SetActive(false);
 
 
 
@@ -40,6 +45,8 @@ public class JackTimelineController : MonoBehaviour
 		if (characterController != null) characterController.enabled = true;
 		if (playerInput != null) playerInput.enabled = true;
 
+		if( robotCamera != null) robotCamera.SetActive(true);
+		if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
 		Debug.Log("Cinemática finalizada: Control transferido al Robot.");
 	}
 }

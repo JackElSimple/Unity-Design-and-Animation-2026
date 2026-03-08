@@ -5,8 +5,8 @@ public class TriggerChest : MonoBehaviour
     public Animator chestAnimator;
     public Animator JackAnimator;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
     {
         
     }
@@ -22,8 +22,9 @@ public class TriggerChest : MonoBehaviour
         // Use == for comparison, or better yet, CompareTag()
         if (other.CompareTag("Player"))
         {
-            chestAnimator.SetBool("abierto", true);
-            JackAnimator.SetTrigger("Muerto");
+			Debug.Log("Player entered the chest trigger!");
+			chestAnimator.SetBool("abierto", true);
+			JackAnimator.SetTrigger("Muerto");
 
         }
     }
