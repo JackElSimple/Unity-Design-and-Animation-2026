@@ -1,11 +1,13 @@
 using UnityEngine;
-
+using System.Collections;
 public class TriggerChest : MonoBehaviour
 {
     public Animator chestAnimator;
     public Animator JackAnimator;
-
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	public AudioSource sonidoApertura;
+	public AudioSource sonidoExplosion;
+	private float tiempoEsperaExplosion = 1f; // Tiempo en segundos para esperar antes de reproducir el sonido de explosión
+											 // Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
         
@@ -24,9 +26,8 @@ public class TriggerChest : MonoBehaviour
         {
 			Debug.Log("Player entered the chest trigger!");
 			chestAnimator.SetBool("abierto", true);
-			JackAnimator.SetTrigger("Muerto");
-
-        }
+			StartCoroutine(ReproducirSonidos());
+		}
     }
 
     // Triggered when something leaves the trigger collider
@@ -37,4 +38,20 @@ public class TriggerChest : MonoBehaviour
             chestAnimator.SetBool("abierto", false);
         }
     }
+
+
+	IEnumerator ReproducirSonidos()
+	{
+		sonidoApertura.Play();
+		// Espera el tiempo exacto del primer clip (o los segundos que tú quieras)
+		yield return new WaitForSeconds(sonidoApertura.clip.length);
+
+		sonidoExplosion.Play();
+		yield return new WaitForSeconds(tiempoEsperaExplosion);
+		JackAnimator.SetTrigger("Muerto");
+
+
+	}
+
+	
 }
