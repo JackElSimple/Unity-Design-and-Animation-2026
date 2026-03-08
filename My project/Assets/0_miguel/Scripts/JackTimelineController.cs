@@ -9,8 +9,25 @@ public class JackTimelineController : MonoBehaviour
 
 	[Header("Controles")]
 	public PlayerInput playerInput; // Arrástralo desde el inspector
+
 	public CharacterController characterController; // Arrástralo desde el inspector
 
+	public void IniciarCinematica()
+	{
+
+		if (gameplayAnimator != null) gameplayAnimator.enabled = false;
+
+		if (playerInput != null) playerInput.enabled = false;
+
+		if (characterController != null) characterController.enabled = false;
+
+
+
+
+
+		Debug.Log("Cinemática iniciada: Control transferido al Timeline.");
+
+	}
 	public void FinalizarCinematica()
 	{
 		// 1. Apagamos el Animator que usó el Timeline para que no bloquee al personaje

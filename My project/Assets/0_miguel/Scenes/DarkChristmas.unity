@@ -2054,6 +2054,8 @@ PlayableDirector:
     value: {fileID: 1137383410}
   - key: {fileID: 896336404117320072, guid: 2c0bd5895b954ce4eae12a8d40902503, type: 2}
     value: {fileID: 1927175880}
+  - key: {fileID: -4168247231238545229, guid: 2c0bd5895b954ce4eae12a8d40902503, type: 2}
+    value: {fileID: 1646747282}
   m_ExposedReferences:
     m_References:
     - 68d1b4b8e276d1e44b4560b7c5d3a99e: {fileID: 135756931}
@@ -2784,7 +2786,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 551256371699778233, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 558313226514937229, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2828,7 +2830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1388223219109358144, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1388223219109358144, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2956,7 +2958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5427463079251882154, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6265343015969047214, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
       propertyPath: m_Enabled
@@ -2992,6 +2994,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7894604655076171419, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1646747281}
+    - targetCorrespondingSourceObject: {fileID: 7894604655076171419, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1646747282}
   m_SourcePrefab: {fileID: 100100000, guid: 4b4a848de1f3b6e4bac851fd71a51d74, type: 3}
 --- !u!1001 &915481692
 PrefabInstance:
@@ -3340,7 +3345,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 886216426}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -5001,6 +5006,51 @@ MonoBehaviour:
   gameplayAnimator: {fileID: 1016748975}
   playerInput: {fileID: 1016748971}
   characterController: {fileID: 1016748974}
+--- !u!114 &1646747282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646747276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 200bb195bb55653419a561d4fd62a6cb, type: 2}
+    - {fileID: 11400000, guid: a2eaa1fa7f269ed418911bffe072b622, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1646747281}
+          m_TargetAssemblyTypeName: JackTimelineController, Assembly-CSharp
+          m_MethodName: IniciarCinematica
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1646747281}
+          m_TargetAssemblyTypeName: JackTimelineController, Assembly-CSharp
+          m_MethodName: FinalizarCinematica
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1670239410
 PrefabInstance:
   m_ObjectHideFlags: 0
