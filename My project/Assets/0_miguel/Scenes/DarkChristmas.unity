@@ -1605,7 +1605,7 @@ Camera:
   far clip plane: 500
   field of view: 40
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2154,6 +2154,8 @@ PlayableDirector:
     value: {fileID: 842485933}
   - key: {fileID: -1527531581325441265, guid: 2c0bd5895b954ce4eae12a8d40902503, type: 2}
     value: {fileID: 1196806904}
+  - key: {fileID: -8676617637205272658, guid: 2c0bd5895b954ce4eae12a8d40902503, type: 2}
+    value: {fileID: 1196806902}
   m_ExposedReferences:
     m_References:
     - 68d1b4b8e276d1e44b4560b7c5d3a99e: {fileID: 135756931}
@@ -3859,7 +3861,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9529412}
   m_Intensity: 5.2
   m_Range: 50
   m_SpotAngle: 101.6
@@ -3903,7 +3905,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
+  m_ColorTemperature: 6973
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
