@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem; // No olvides esta línea para el PlayerInput
-
+using System.Collections;
 public class JackTimelineController : MonoBehaviour
 {
 	[Header("Animators")]
@@ -38,15 +38,24 @@ public class JackTimelineController : MonoBehaviour
 		// 1. Apagamos el Animator que usó el Timeline para que no bloquee al personaje
 		if (timelineAnimator != null) timelineAnimator.enabled = false;
 
-		// 2. Encendemos el Animator del Robot (el que tiene el StarterAssets Controller)
-		if (gameplayAnimator != null) gameplayAnimator.enabled = true;
-
-		// 3. Activamos la física y el control del jugador
-		if (characterController != null) characterController.enabled = true;
-		if (playerInput != null) playerInput.enabled = true;
-
-		if( robotCamera != null) robotCamera.SetActive(true);
-		if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
-		Debug.Log("Cinemática finalizada: Control transferido al Robot.");
+		StartCoroutine(ActivarPersonaje());
+		
 	}
+
+	private IEnumerator ActivarPersonaje()
+	{
+        // 2. Encendemos el Animator del Robot (el que tiene el StarterAssets Controller)
+        if (gameplayAnimator != null) gameplayAnimator.enabled = true;
+        if (robotCamera != null) robotCamera.SetActive(true);
+        if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
+
+        yield return new WaitForSeconds(5f);
+
+        // 3. Activamos la física y el control del jugador
+        if (characterController != null) characterController.enabled = true;
+        if (playerInput != null) playerInput.enabled = true;
+
+   
+        Debug.Log("Cinemática finalizada: Control transferido al Robot.");
+    }
 }
