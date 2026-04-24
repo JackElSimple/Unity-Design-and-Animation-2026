@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Default/Scenes/GetStarted_Scene.unity
     guid: 6888813f2bd9e4521b9b1343abf0c60f
+  - enabled: 1
+    path: Assets/0_miguel/Scenes/DarkChristmas.unity
+    guid: d060e96d0f61ab54ba322397098eb920
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
