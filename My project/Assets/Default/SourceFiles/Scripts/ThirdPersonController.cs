@@ -167,8 +167,11 @@ public bool IsRespawning { get; set; } = false;
 }
 
         private void Update()
-        {
-            _hasAnimator = TryGetComponent(out _animator);
+		{
+			if (!_controller.enabled)
+				return;
+
+			_hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
             GroundedCheck();
