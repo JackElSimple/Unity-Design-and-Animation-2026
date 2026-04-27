@@ -2567,6 +2567,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: JackSkellingtonPRO
       objectReference: {fileID: 0}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Events.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Signals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: 'm_Events.m_Signals.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: abca3171a9935db4f9b2a139ce8f9b05, type: 2}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 366769228}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LanzarDialogoTimeline
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JackTimelineController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490466897877945699, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2835150575170373476, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1999988
@@ -2588,9 +2628,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4508749253355883236, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: timelineClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e7823ec53d0b36b42bba79c582480ad2, type: 3}
+    - target: {fileID: 4508749253355883236, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
       propertyPath: triggerAudio
       value: 
       objectReference: {fileID: 1779114805}
+    - target: {fileID: 4508749253355883236, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+      propertyPath: timelineSubtitle
+      value: Cold... so cold...
+      objectReference: {fileID: 0}
     - target: {fileID: 5298224347864597276, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
       propertyPath: CameraDistance
       value: 3.7
@@ -3369,6 +3417,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
   audioSource: {fileID: 731369991}
   subtitleUI: {fileID: 382436280}
+--- !u!114 &366769228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4508749253355883236, guid: 49828b170c646f642a89f1b79819ac08, type: 3}
+  m_PrefabInstance: {fileID: 300999174}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366769224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aebe869533339b14dbc42fadf53de125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JackTimelineController
 --- !u!1 &370637513
 GameObject:
   m_ObjectHideFlags: 0
@@ -6055,7 +6114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 19fc41c469bba2640a9e64ebac8ca070, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1196556683304020133, guid: 19fc41c469bba2640a9e64ebac8ca070, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -19054,6 +19113,84 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1891642504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891642505}
+  - component: {fileID: 1891642508}
+  - component: {fileID: 1891642506}
+  - component: {fileID: 1891642509}
+  m_Layer: 0
+  m_Name: 'AudioCollider: Remember'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1891642505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891642504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.68417335, y: 0.68417335, z: 0.178625, w: 0.17862496}
+  m_LocalPosition: {x: -10.57, y: 0, z: -6.04}
+  m_LocalScale: {x: 1, y: 0, z: 2.1782072}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2086254788}
+  m_LocalEulerAnglesHint: {x: 0, y: 150.736, z: 90}
+--- !u!64 &1891642506
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891642504}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &1891642508
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891642504}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1891642509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891642504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b335199ebf0aff4abafd7f09ad53ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  clip: {fileID: 8300000, guid: 4dd99607355124e4eb638d3f40ae6a93, type: 3}
+  subtitle: Yes... I remember... something...
 --- !u!1001 &1892517851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20973,6 +21110,7 @@ Transform:
   - {fileID: 985543282}
   - {fileID: 1388868242}
   - {fileID: 1779114806}
+  - {fileID: 1891642505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2088254385
