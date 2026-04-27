@@ -29,7 +29,6 @@ public class JackTimelineController : MonoBehaviour
 		if (playerFollowCamera != null) playerFollowCamera.SetActive(false);
 
 
-
 		Debug.Log("Cinemática iniciada: Control transferido al Timeline.");
 
 	}

@@ -8,6 +8,7 @@ public class DialogueTrigger : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		Debug.Log("Dialogue trigger activado: " + subtitle);
 		DialogueManager.Instance.PlayLine(clip, subtitle);
 		Destroy(gameObject);
 	}

@@ -17,7 +17,9 @@ public class DialogueManager : MonoBehaviour
 	}
 
 	public void PlayLine(AudioClip clip, string subtitle)
+
 	{
+		Debug.Log("Reproduciendo audio: " + clip.name);
 		if (isPlaying) return;
 
 		StartCoroutine(PlayRoutine(clip, subtitle));
