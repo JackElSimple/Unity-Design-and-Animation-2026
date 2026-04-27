@@ -14,8 +14,10 @@ public class JackTimelineController : MonoBehaviour
 
 	[Header("Camaras")]
 	public GameObject robotCamera; 
-	public GameObject playerFollowCamera; 
+	public GameObject playerFollowCamera;
 
+	[Header("Triggers")]
+	public GameObject triggerAudio;
 	public void IniciarCinematica()
 	{
 
@@ -23,7 +25,6 @@ public class JackTimelineController : MonoBehaviour
 
 		if (playerInput != null) playerInput.enabled = false;
 
-		if (characterController != null) characterController.enabled = false;
 
 		if (robotCamera != null) robotCamera.SetActive(false);
 		if (playerFollowCamera != null) playerFollowCamera.SetActive(false);
@@ -36,6 +37,7 @@ public class JackTimelineController : MonoBehaviour
 	{
 		// 1. Apagamos el Animator que usó el Timeline para que no bloquee al personaje
 		if (timelineAnimator != null) timelineAnimator.enabled = false;
+		if (characterController != null) characterController.enabled = false;
 
 		StartCoroutine(ActivarPersonaje());
 		
@@ -53,8 +55,8 @@ public class JackTimelineController : MonoBehaviour
         // 3. Activamos la física y el control del jugador
         if (characterController != null) characterController.enabled = true;
         if (playerInput != null) playerInput.enabled = true;
+		triggerAudio.SetActive(true);
 
-   
-        Debug.Log("Cinemática finalizada: Control transferido al Robot.");
+		Debug.Log("Cinemática finalizada: Control transferido al Robot.");
     }
 }
