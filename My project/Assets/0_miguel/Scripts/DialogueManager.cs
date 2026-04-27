@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
 	public void PlayLine(AudioClip clip, string subtitle)
 
 	{
-		Debug.Log("Reproduciendo audio: " + clip.name);
+		Debug.Log("Intento de PlayLine con: " + clip.name + " | isPlaying = " + isPlaying);
 		if (isPlaying) return;
 
 		StartCoroutine(PlayRoutine(clip, subtitle));
