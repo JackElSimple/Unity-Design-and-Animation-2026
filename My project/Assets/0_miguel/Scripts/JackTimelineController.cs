@@ -18,10 +18,12 @@ public class JackTimelineController : MonoBehaviour
 
 	[Header("Triggers")]
 	public GameObject triggerAudio;
+
 	public void IniciarCinematica()
 	{
 
 		if (gameplayAnimator != null) gameplayAnimator.enabled = false;
+		if (characterController != null) characterController.enabled = false;
 
 		if (playerInput != null) playerInput.enabled = false;
 
@@ -37,7 +39,6 @@ public class JackTimelineController : MonoBehaviour
 	{
 		// 1. Apagamos el Animator que usó el Timeline para que no bloquee al personaje
 		if (timelineAnimator != null) timelineAnimator.enabled = false;
-		if (characterController != null) characterController.enabled = false;
 
 		StartCoroutine(ActivarPersonaje());
 		
