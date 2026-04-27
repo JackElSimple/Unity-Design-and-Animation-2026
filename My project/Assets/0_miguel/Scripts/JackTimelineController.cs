@@ -19,6 +19,21 @@ public class JackTimelineController : MonoBehaviour
 	[Header("Triggers")]
 	public GameObject triggerAudio;
 
+	[Header("Dialogue Signal")]
+	public AudioClip timelineClip;
+
+	[TextArea]
+	public string timelineSubtitle;
+	public void LanzarDialogoTimeline()
+	{
+		if (DialogueManager.Instance != null)
+		{
+			DialogueManager.Instance.PlayLine(
+				timelineClip,
+				timelineSubtitle
+			);
+		}
+	}
 	public void IniciarCinematica()
 	{
 
