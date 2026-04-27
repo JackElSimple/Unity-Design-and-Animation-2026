@@ -49,7 +49,7 @@ public class JackTimelineController : MonoBehaviour
         if (robotCamera != null) robotCamera.SetActive(true);
         if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
 
         // 3. Activamos la física y el control del jugador
         if (characterController != null) characterController.enabled = true;
