@@ -75,4 +75,34 @@ public class JackTimelineController : MonoBehaviour
 
 		Debug.Log("Cinemática finalizada: Control transferido al Robot.");
     }
+	public void IniciarCinematicaFinal()
+	{
+		if (gameplayAnimator != null) gameplayAnimator.enabled = false;
+		if (characterController != null) characterController.enabled = false;
+		if (playerInput != null) playerInput.enabled = false;
+
+		if (robotCamera != null) robotCamera.SetActive(false);
+		if (playerFollowCamera != null) playerFollowCamera.SetActive(false);
+
+		Debug.Log("Cinematica FINAL iniciada");
+	}
+	public void FinalizarCinematicaFinal()
+	{
+		if (timelineAnimator != null) timelineAnimator.enabled = false;
+
+		StartCoroutine(ActivarPersonajeFinal());
+	}
+	private IEnumerator ActivarPersonajeFinal()
+	{
+		if (gameplayAnimator != null) gameplayAnimator.enabled = true;
+		if (robotCamera != null) robotCamera.SetActive(true);
+		if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
+
+		yield return new WaitForSeconds(6f);
+
+		if (characterController != null) characterController.enabled = true;
+		if (playerInput != null) playerInput.enabled = true;
+
+		Debug.Log("Cinematica FINAL terminada");
+	}
 }
