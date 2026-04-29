@@ -2109,7 +2109,7 @@ GameObject:
   - component: {fileID: 206156041}
   - component: {fileID: 206156040}
   m_Layer: 6
-  m_Name: Plano (1)
+  m_Name: Plano 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
