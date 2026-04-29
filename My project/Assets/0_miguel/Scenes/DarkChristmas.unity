@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95309f8cf528964999af6217b1edc9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimelineTrigger
-  director: {fileID: 0}
+  timelineObject: {fileID: 437445629}
 --- !u!1001 &222364916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4270,6 +4270,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4289669418769644, guid: 02392c8ccbd380247b6066a73eb5209b, type: 3}
   m_PrefabInstance: {fileID: 414121628}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &437445629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437445631}
+  - component: {fileID: 437445630}
+  m_Layer: 0
+  m_Name: BridgeFinalTimeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!320 &437445630
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437445629}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: a2bb82dc5600719498288888498f32f8, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -3496669974204398498, guid: a2bb82dc5600719498288888498f32f8, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &437445631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437445629}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 145.47354, y: 0.02, z: -19.51849}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &440099657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19810,6 +19861,7 @@ SceneRoots:
   - {fileID: 135756930}
   - {fileID: 940740106}
   - {fileID: 623011586}
+  - {fileID: 437445631}
   - {fileID: 74824526}
   - {fileID: 27093501}
   - {fileID: 300999174}

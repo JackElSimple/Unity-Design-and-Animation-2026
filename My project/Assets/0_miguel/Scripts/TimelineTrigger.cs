@@ -1,21 +1,19 @@
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class TimelineTrigger : MonoBehaviour
 {
-	public PlayableDirector director;
+	public GameObject timelineObject;
 
-	private bool activated = false;
+	private bool activated;
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("Algo entró: " + other.name);
-
 		if (!other.CompareTag("Player")) return;
+		if (activated) return;
 
-		Debug.Log("Jugador entró al trigger");
-		Debug.Log(director.playableAsset);
-		director.Play();
+		activated = true;
+
+		timelineObject.SetActive(true);
 
 		Destroy(gameObject);
 	}
