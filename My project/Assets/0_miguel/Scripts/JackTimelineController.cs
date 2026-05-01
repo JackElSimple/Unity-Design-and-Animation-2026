@@ -1,108 +1,157 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // No olvides esta línea para el PlayerInput
+using UnityEngine.InputSystem;
 using System.Collections;
+
 public class JackTimelineController : MonoBehaviour
 {
-	[Header("Animators")]
-	public Animator timelineAnimator; // El de JackSkellingtonMove Variant
-	public Animator gameplayAnimator; // El de Robot
+    [Header("Objetos de Timeline")]
+    public GameObject objetoTimelineInicial; // Arrastra el objeto de la primera cinemática
+    public GameObject objetoTimelineFinal;
+    public string nombreAnimacion = "FinalAnimation";
+    [Header("Animators")]
+    public Animator timelineAnimator;
+    public Animator gameplayAnimator;
+    [Header("Sonido y Animación")]
+    public AudioSource audioSource; // El componente que emite el sonido
+    public AudioClip sonidoFinal;
+    [Header("Controles")]
+    public PlayerInput playerInput;
+    public CharacterController characterController;
 
-	[Header("Controles")]
-	public PlayerInput playerInput; // Arrástralo desde el inspector
+    [Header("Camaras")]
+    public GameObject robotCamera;
+    public GameObject playerFollowCamera;
 
-	public CharacterController characterController; // Arrástralo desde el inspector
+    [Header("Triggers")]
+    public GameObject triggerAudio;
 
-	[Header("Camaras")]
-	public GameObject robotCamera; 
-	public GameObject playerFollowCamera;
+    [Header("Dialogue Signal")]
+    public AudioClip timelineClip;
 
-	[Header("Triggers")]
-	public GameObject triggerAudio;
+    [TextArea]
+    public string timelineSubtitle;
 
-	[Header("Dialogue Signal")]
-	public AudioClip timelineClip;
+    public void LanzarDialogoTimeline()
+    {
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.PlayLine(timelineClip, timelineSubtitle);
+        }
+    }
 
-	[TextArea]
-	public string timelineSubtitle;
-	public void LanzarDialogoTimeline()
-	{
-		if (DialogueManager.Instance != null)
-		{
-			DialogueManager.Instance.PlayLine(
-				timelineClip,
-				timelineSubtitle
-			);
-		}
-	}
-	public void IniciarCinematica()
-	{
+    public void IniciarCinematica()
+    {
+        if (gameplayAnimator != null) gameplayAnimator.enabled = false;
+        if (characterController != null) characterController.enabled = false;
+        if (playerInput != null) playerInput.enabled = false;
 
-		if (gameplayAnimator != null) gameplayAnimator.enabled = false;
-		if (characterController != null) characterController.enabled = false;
+        if (robotCamera != null) robotCamera.SetActive(false);
+        if (playerFollowCamera != null) playerFollowCamera.SetActive(false);
 
-		if (playerInput != null) playerInput.enabled = false;
+        Debug.Log("Cinematica iniciada: Control transferido al Timeline.");
+    }
 
+    public void FinalizarCinematica()
+    {
+        if (timelineAnimator != null) timelineAnimator.enabled = false;
+        StartCoroutine(ActivarPersonaje());
+    }
 
-		if (robotCamera != null) robotCamera.SetActive(false);
-		if (playerFollowCamera != null) playerFollowCamera.SetActive(false);
-
-
-		Debug.Log("Cinematica iniciada: Control transferido al Timeline.");
-
-	}
-	public void FinalizarCinematica()
-	{
-		// 1. Apagamos el Animator que usó el Timeline para que no bloquee al personaje
-		if (timelineAnimator != null) timelineAnimator.enabled = false;
-
-		StartCoroutine(ActivarPersonaje());
-		
-	}
-
-	private IEnumerator ActivarPersonaje()
-	{
-        // 2. Encendemos el Animator del Robot (el que tiene el StarterAssets Controller)
+    private IEnumerator ActivarPersonaje()
+    {
         if (gameplayAnimator != null) gameplayAnimator.enabled = true;
         if (robotCamera != null) robotCamera.SetActive(true);
         if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
 
         yield return new WaitForSeconds(6f);
 
-        // 3. Activamos la física y el control del jugador
         if (characterController != null) characterController.enabled = true;
         if (playerInput != null) playerInput.enabled = true;
-		triggerAudio.SetActive(true);
 
-		Debug.Log("Cinemática finalizada: Control transferido al Robot.");
+        if (triggerAudio != null)
+        {
+            triggerAudio.SetActive(true);
+            Debug.Log($"<color=green>LOG: Activando {triggerAudio.name}</color>");
+        }
+
+        Debug.Log("Cinemática finalizada.");
     }
-	public void IniciarCinematicaFinal()
-	{
-		if (gameplayAnimator != null) gameplayAnimator.enabled = false;
-		if (characterController != null) characterController.enabled = false;
-		if (playerInput != null) playerInput.enabled = false;
 
-		if (robotCamera != null) robotCamera.SetActive(false);
-		if (playerFollowCamera != null) playerFollowCamera.SetActive(false);
+    public void IniciarCinematicaFinal()
+    {
+        // 1. Apagamos la primera para liberar el control del personaje
+        if (objetoTimelineInicial != null)
+        {
+            objetoTimelineInicial.SetActive(false);
+            Debug.Log("Timeline Inicial desactivada.");
+        }
 
-		Debug.Log("Cinematica FINAL iniciada");
-	}
-	public void FinalizarCinematicaFinal()
-	{
-		if (timelineAnimator != null) timelineAnimator.enabled = false;
+        // 2. Preparación de componentes (Física e Input)
+        if (characterController != null) characterController.enabled = false;
+        if (playerInput != null) playerInput.enabled = false;
 
-		StartCoroutine(ActivarPersonajeFinal());
-	}
-	private IEnumerator ActivarPersonajeFinal()
-	{
-		if (gameplayAnimator != null) gameplayAnimator.enabled = true;
-		if (robotCamera != null) robotCamera.SetActive(true);
-		if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
+        // IMPORTANTE: No apagues el gameplayAnimator si la Timeline lo usa, 
+        // pero haz un Rebind para que acepte la nueva posición de la Timeline Final
+        if (gameplayAnimator != null)
+        {
+            gameplayAnimator.enabled = true;
+            gameplayAnimator.Rebind();
+        }
 
-		yield return new WaitForSeconds(6f);
+        // 3. Encendemos la cinemática final
+        if (objetoTimelineFinal != null)
+        {
+            objetoTimelineFinal.SetActive(true);
+            Debug.Log("Timeline Final activada.");
+        }
 
-		if (characterController != null) characterController.enabled = true;
-		if (playerInput != null) playerInput.enabled = true;
+        if (robotCamera != null) robotCamera.SetActive(false);
+        if (playerFollowCamera != null) playerFollowCamera.SetActive(false);
+        // 2. Ejecutar Sonido
+        if (audioSource != null && sonidoFinal != null)
+        {
+            audioSource.PlayOneShot(sonidoFinal);
+            Debug.Log("Sonido reproducido.");
+        }
 
-		Debug.Log("Cinematica FINAL terminada");
-	}
+        // 3. Ejecutar Animación
+        if (gameplayAnimator != null)
+        {
+            gameplayAnimator.enabled = true;
+            gameplayAnimator.Play(nombreAnimacion);
+
+            // Si la animación debe desplazar al personaje en el espacio:
+            gameplayAnimator.applyRootMotion = true;
+
+            Debug.Log($"Ejecutando animación: {nombreAnimacion}");
+        }
+    }
+
+    public void FinalizarCinematicaFinal()
+    {
+        if (timelineAnimator != null) timelineAnimator.enabled = false;
+        StartCoroutine(ActivarPersonajeFinal());
+    }
+
+    private IEnumerator ActivarPersonajeFinal()
+    {
+        Debug.Log("<color=cyan>DEBUG: Iniciando reactivación final...</color>");
+
+        if (gameplayAnimator != null)
+        {
+            gameplayAnimator.enabled = true;
+            gameplayAnimator.Rebind();
+            Debug.Log("<color=green>LOG: Animator reseteado con Rebind.</color>");
+        }
+
+        if (robotCamera != null) robotCamera.SetActive(true);
+        if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
+
+        yield return new WaitForSeconds(6f);
+
+        if (characterController != null) characterController.enabled = true;
+        if (playerInput != null) playerInput.enabled = true;
+
+        Debug.Log("<color=magenta>Cinemática FINAL terminada. Control devuelto.</color>");
+    }
 }
