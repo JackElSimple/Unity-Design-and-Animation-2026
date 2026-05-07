@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using System.Collections;
 
 public class JackTimelineController : MonoBehaviour
 {
     [Header("Objetos de Timeline")]
-    public GameObject objetoTimelineInicial; // Arrastra el objeto de la primera cinemática
+    public GameObject objetoTimelineInicial; // Arrastra el objeto de la primera cinematica
     public GameObject objetoTimelineFinal;
-    public string nombreAnimacion = "FinalAnimation";
+
     [Header("Animators")]
     public Animator timelineAnimator;
     public Animator gameplayAnimator;
-    [Header("Sonido y Animación")]
+    [Header("Sonido y Animacion")]
     public AudioSource audioSource; // El componente que emite el sonido
     public AudioClip sonidoFinal;
     [Header("Controles")]
@@ -42,6 +43,12 @@ public class JackTimelineController : MonoBehaviour
     public void IniciarCinematica()
     {
         if (gameplayAnimator != null) gameplayAnimator.enabled = false;
+        if (timelineAnimator != null)
+        {
+            timelineAnimator.enabled = true;
+            timelineAnimator.applyRootMotion = true;
+        }
+
         if (characterController != null) characterController.enabled = false;
         if (playerInput != null) playerInput.enabled = false;
 
@@ -59,7 +66,12 @@ public class JackTimelineController : MonoBehaviour
 
     private IEnumerator ActivarPersonaje()
     {
-        if (gameplayAnimator != null) gameplayAnimator.enabled = true;
+        if (gameplayAnimator != null)
+        {
+            gameplayAnimator.enabled = true;
+            gameplayAnimator.applyRootMotion = false;
+        }
+
         if (robotCamera != null) robotCamera.SetActive(true);
         if (playerFollowCamera != null) playerFollowCamera.SetActive(true);
 
@@ -74,7 +86,7 @@ public class JackTimelineController : MonoBehaviour
             Debug.Log($"<color=green>LOG: Activando {triggerAudio.name}</color>");
         }
 
-        Debug.Log("Cinemática finalizada.");
+        Debug.Log("Cinematica finalizada.");
     }
 
     public void IniciarCinematicaFinal()
@@ -82,23 +94,32 @@ public class JackTimelineController : MonoBehaviour
         // 1. Apagamos la primera para liberar el control del personaje
         if (objetoTimelineInicial != null)
         {
+            PlayableDirector directorInicial = objetoTimelineInicial.GetComponent<PlayableDirector>();
+            if (directorInicial != null) directorInicial.Stop();
+
             objetoTimelineInicial.SetActive(false);
             Debug.Log("Timeline Inicial desactivada.");
         }
 
-        // 2. Preparación de componentes (Física e Input)
+        // 2. Preparacion de componentes (Fisica e Input)
         if (characterController != null) characterController.enabled = false;
         if (playerInput != null) playerInput.enabled = false;
 
-        // IMPORTANTE: No apagues el gameplayAnimator si la Timeline lo usa, 
-        // pero haz un Rebind para que acepte la nueva posición de la Timeline Final
+        // La Timeline final esta enlazada al Animator raiz, no al Animator de gameplay.
+        // Dejamos un solo Animator al mando para que no compitan entre si.
         if (gameplayAnimator != null)
         {
-            gameplayAnimator.enabled = true;
-            gameplayAnimator.Rebind();
+            gameplayAnimator.applyRootMotion = false;
+            gameplayAnimator.enabled = false;
         }
 
-        // 3. Encendemos la cinemática final
+        if (timelineAnimator != null)
+        {
+            timelineAnimator.enabled = true;
+            timelineAnimator.applyRootMotion = true;
+        }
+
+        // 3. Encendemos la cinematica final
         if (objetoTimelineFinal != null)
         {
             objetoTimelineFinal.SetActive(true);
@@ -113,18 +134,6 @@ public class JackTimelineController : MonoBehaviour
             audioSource.PlayOneShot(sonidoFinal);
             Debug.Log("Sonido reproducido.");
         }
-
-        // 3. Ejecutar Animación
-        if (gameplayAnimator != null)
-        {
-            gameplayAnimator.enabled = true;
-            gameplayAnimator.Play(nombreAnimacion);
-
-            // Si la animación debe desplazar al personaje en el espacio:
-            gameplayAnimator.applyRootMotion = true;
-
-            Debug.Log($"Ejecutando animación: {nombreAnimacion}");
-        }
     }
 
     public void FinalizarCinematicaFinal()
@@ -135,11 +144,12 @@ public class JackTimelineController : MonoBehaviour
 
     private IEnumerator ActivarPersonajeFinal()
     {
-        Debug.Log("<color=cyan>DEBUG: Iniciando reactivación final...</color>");
+        Debug.Log("<color=cyan>DEBUG: Iniciando reactivacion final...</color>");
 
         if (gameplayAnimator != null)
         {
             gameplayAnimator.enabled = true;
+            gameplayAnimator.applyRootMotion = false;
             gameplayAnimator.Rebind();
             Debug.Log("<color=green>LOG: Animator reseteado con Rebind.</color>");
         }
@@ -152,6 +162,6 @@ public class JackTimelineController : MonoBehaviour
         if (characterController != null) characterController.enabled = true;
         if (playerInput != null) playerInput.enabled = true;
 
-        Debug.Log("<color=magenta>Cinemática FINAL terminada. Control devuelto.</color>");
+        Debug.Log("<color=magenta>Cinematica FINAL terminada. Control devuelto.</color>");
     }
 }
